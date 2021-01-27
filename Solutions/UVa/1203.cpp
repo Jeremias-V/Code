@@ -1,59 +1,73 @@
 #include<iostream>
+#include<queue>
 #include<string>
-#include<algorithm>
+
 using namespace std;
 
-struct Query{
-    int id;
+class Query{
+    public:
+    int qnum;
     int period;
-    int period_copy;
+    int ogPeriod;
+
+    Query(int q, int p){
+        qnum = q;
+        period = p;
+        ogPeriod = p;
+    };
+    
 };
 
-bool compare(Query e1, Query e2){
-    if(e1.period == e2.period){
-        return e1.id < e2.id;
+bool operator<(const Query& q1, const Query& q2){
+    
+    if(q1.period == q2.period){
+        return q1.qnum > q2.qnum;
+    }else{
+        return q1.period > q2.period;
     }
-    return e1.period < e2.period;
+
 }
 
 int main(){
-    int qNum, id, period, count = 1, seconds = 1, iterQ = 0;
-    bool first = true;
-    string reg;
-    cin >> reg;
-    Query queries[1001];
-    while(reg != "#"){
-        if(first){
-            cin >> queries[iterQ].id >> queries[iterQ].period;
-            queries[iterQ].period_copy = queries[iterQ].period;
-            iterQ++;
-            first = false;
-        }else{
-            cin >> reg;
-            if(reg == "#"){
-                break;
+
+    string input, tmp;
+    int i, K, tmpID, tmpPeriod;
+    bool first;
+    priority_queue<Query> queries;
+
+    while(getline(cin, input)){
+
+        if(input[0] == '#'){
+
+            cin >> K;
+            while(K-- > 0){
+                Query tmpQ = queries.top();
+                cout << tmpQ.qnum << endl;
+                queries.pop();
+                tmpQ.period += tmpQ.ogPeriod;
+                queries.push(tmpQ);
             }
-            cin >> queries[iterQ].id >> queries[iterQ].period;
-            queries[iterQ].period_copy = queries[iterQ].period;
-            iterQ++;
-        }
-    }
-    sort(queries, queries+iterQ, compare);
-    cin >> qNum;
-    while(count <= qNum){
-        for(int i = 0; i < iterQ; i++){
-            if(queries[i].period == seconds){
-                cout << queries[i].id << endl;
-                queries[i].period += queries[i].period_copy;
-                count++;
-                if(count > qNum){
-                    break;
-                    cout << endl;
+
+        }else if(input[0] == 'R'){
+
+            tmp = "";
+            first = true;
+            for(i = 9; i <= input.size(); i++){
+                if((input[i] == ' ' || i == input.size()) && tmp != ""){
+                    if(first){
+                        first = false;
+                        tmpID = stoi(tmp);
+                    }else{
+                        tmpPeriod = stoi(tmp);
+                    }
+                    tmp = "";
+                }else if(input[i] != ' '){
+                    tmp += input[i];
                 }
             }
+            queries.push(Query(tmpID, tmpPeriod));
+            
         }
-        sort(queries, queries+iterQ, compare);
-        seconds++;
     }
-    return 0; 
+    return 0;
 }
