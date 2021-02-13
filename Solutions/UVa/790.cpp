@@ -79,8 +79,7 @@ bool operator<(Submission s1, Submission s2){
             if(s1.problem == s2.problem){
                 return s1.accepted > s2.accepted;
             }else{
-                if(!s1.accepted) return false;
-                else return true;
+                return s1.problem < s2.problem;
             }
         }else{
             return s1.teamID > s2.teamID;
