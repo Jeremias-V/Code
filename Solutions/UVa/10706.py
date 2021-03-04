@@ -3,11 +3,12 @@ from sys import stdin, stdout
 
 def generateArr(A):
     i = 1
-    while(len(A) < 150000):
+    while(len(A) < 145229):
         if i >= 10:
             tmp = str(i)
             for c in tmp:
-                A.append(c)
+                if(len(A) < 145229):
+                    A.append(c)
         else:
             A.append(str(i))
         i += 1
@@ -38,7 +39,7 @@ def main():
     generateArr(ansArr)
     ans = ""
     while a > 0:
-        i = int(stdin.readline())
+        i = int(stdin.readline().strip())
         k = binarySearch(S, i)
         before = S[k-1]
         pos = i - before - 1
