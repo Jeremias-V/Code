@@ -61,7 +61,7 @@ def main():
                 m += 1
         erdos = nodeIndex["Erdos,P."]
         stdout.write("Scenario {}\n".format(i+1))
-        visited = [False for _ in range(len(G))]
+        visited = [False] * len(G)
         BFS(erdos)
         for j in range(N):
             tmp = stdin.readline().strip()
