@@ -3,12 +3,14 @@
 set nocompatible              " be iMproved, required
 set number
 set autochdir " start at current directory file
+set cursorline
+set tabstop=4
+set shiftwidth=4
+set encoding=UTF-8
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vim-colors-solarized
 set rtp+=~/.vim/bundle/Vundle.vim
-
 
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
@@ -20,19 +22,19 @@ Plugin 'VundleVim/Vundle.vim'
 " Add plugins here
 
 Plugin 'vim-syntastic/syntastic'
-Plugin 'tomasiser/vim-code-dark'
-Plugin 'tpope/vim-fugitive'
-Plugin 'itchyny/lightline.vim'
 Plugin 'preservim/nerdtree'
 Plugin 'preservim/nerdcommenter'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'arcticicestudio/nord-vim'
 
 call vundle#end()            " required
 
 filetype plugin indent on    " required
 
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-set background=dark
-set t_Co=256
-set t_ut=
-colorscheme codedark
+nnoremap <silent> <C-t> :NERDTreeToggle <CR>
+let g:ycm_global_ycm_extra_conf = '/home/wolfx/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:airline_theme='nord'
+colorscheme nord
+

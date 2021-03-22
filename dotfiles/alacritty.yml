@@ -24,11 +24,14 @@ window:
 
   startup_mode: Windowed
 
+background_opacity: 0.99
+
 scrolling:
 
   history: 10000
 
   multiplier: 1
+
 key_bindings:
 
   - { key: V,        mods: Control|Shift, action: Paste            }
