@@ -36,5 +36,6 @@ filetype plugin indent on    " required
 nnoremap <silent> <C-t> :NERDTreeToggle <CR>
 let g:ycm_global_ycm_extra_conf = '/home/wolfx/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 let g:airline_theme='nord'
+set completeopt-=preview
 colorscheme nord
 

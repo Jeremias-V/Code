@@ -12,7 +12,7 @@ window:
 
   dimensions:
     columns: 85
-    lines: 20
+    lines: 25
 
   padding:
     x: 16
@@ -60,12 +60,12 @@ font:
   offset:
 
     x: 0
-    y: 8
+    y: 2
 
   glyph_offset:
 
     x: 0
-    y: 4
+    y: 1
 
   use_thin_strokes: false
 
