@@ -18,13 +18,13 @@ window:
     x: 16
     y: 16
 
-  dynamic_padding: false
+  dynamic_padding: true
 
   decorations: none
 
   startup_mode: Windowed
 
-background_opacity: 0.99
+background_opacity: 0.96
 
 scrolling:
 
