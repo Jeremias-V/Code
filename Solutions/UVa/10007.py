@@ -10,5 +10,5 @@ def main():
     while(n != 0):
         print(math.factorial(n)*catalan(n))
         n = int(input())
-        
+
 main()

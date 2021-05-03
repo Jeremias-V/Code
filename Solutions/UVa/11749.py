@@ -21,27 +21,26 @@ def main():
     n, m = map(int, stdin.readline().strip().split())
     while(n != 0 and m != 0):
         maxPPA = -2147483648
-        maxNodeSet = set()
+        maxNodeSet = dict()
         G = [[] for _ in range(n)]
         visited = [False]*n
         for _ in range(m):
             u, v, ppa = map(int, stdin.readline().strip().split())
             u -= 1
             v -= 1
-            G[u].append((v, ppa))
-            G[v].append((u, ppa))
             if ppa > maxPPA:
                 maxPPA = ppa
-                maxNodeSet = set()
-                maxNodeSet.add(u)
-                maxNodeSet.add(v)
+                maxNodeSet = dict()
+                maxNodeSet[u] = None
+                G[u].append((v, ppa))
+                G[v].append((u, ppa))
             elif ppa == maxPPA:
-                maxNodeSet.add(u)
-                maxNodeSet.add(v)
+                G[u].append((v, ppa))
+                G[v].append((u, ppa))
+                maxNodeSet[u] = None
         ans = 0
         DFS()
         stdout.write(str(ans) + '\n')
         n, m = map(int, stdin.readline().strip().split())
 
 main()
-
