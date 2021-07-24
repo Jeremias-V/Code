@@ -1,0 +1,40 @@
+#! /bin/sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+setxkbmap us &
+nitrogen --restore &
+picom &
+dunst &
+/home/wolfx/Code/Bash/xinput-config.sh &
+#xrandr --output eDP1 --brightness 0.5
+
+bspc monitor -d I II III
+
+# Laptop Display
+#bspc monitor eDP1 -n left
+#bspc monitor left -d 1 2 3 4
+
+# External Monitor
+#bspc monitor HDMI2 -n right
+#bspc monitor right -d 1 2 3 4
+
+# Polybar
+/home/wolfx/.config/polybar/forest/launch.sh &
+
+bspc config active_border_color \#FFFFFF
+#bspc config normal_border_color \#D23D3D
+
+bspc config border_width        1
+bspc config window_gap          6
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+#bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a gnome-calculator state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
